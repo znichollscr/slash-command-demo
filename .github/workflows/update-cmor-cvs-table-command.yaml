@@ -13,8 +13,8 @@ on:
       comment-id:
         description: 'The comment-id of the slash command'
         required: true
-      comment-pr-ref:
-        description: 'The reference of the pull request of the slash command'
+      comment-pr-number:
+        description: 'The number of the pull request of the slash command'
         required: true
 
 jobs:
@@ -32,10 +32,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           repository: ${{ github.event.client_payload.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.inputs.comment-pr-ref }}
           token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
+
+      - name: Checkout branch
+        env:
+          GITHUB_TOKEN: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
+        run: hub pr checkout ${{ github.event.inputs.comment-pr-number }}
 
       - name: Update time.txt
         run: |
