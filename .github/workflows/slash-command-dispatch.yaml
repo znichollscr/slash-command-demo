@@ -16,7 +16,7 @@ jobs:
           echo "Hi"
           echo $ACTOR
       - name: Dispatch
-        uses: peter-evans/slash-command-dispatch@v5
+        uses: peter-evans/slash-command-dispatch@v5.0.1
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           reaction-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
