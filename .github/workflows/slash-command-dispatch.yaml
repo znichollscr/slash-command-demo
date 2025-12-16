@@ -12,8 +12,8 @@ jobs:
       pull-requests: write
     steps:
       - name: debug
-        with:
-          ACTOR: ${{ github.context.actor }}
+        env:
+          ACTOR: ${{ github.actor }}
         run: |
           echo "Hi"
           echo $ACTOR
