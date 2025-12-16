@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: debug
         env:
-          ACTOR: ${{ github.actor }}
+          BRANCH: ${{ github.ref_name }}
         run: |
           echo "Hi"
-          echo $ACTOR
+          echo $BRANCH
       - name: Dispatch
         uses: peter-evans/slash-command-dispatch@v5.0.1
         with:
