@@ -19,9 +19,9 @@ jobs:
           commands: |
             update-cmor-cvs-table
             update-stac-json
-          static-args: |
-            repository=${{ github.repository }}
-            comment-id=${{ github.event.comment.id }}
+          # static-args: |
+          #   repository=${{ github.repository }}
+          #   comment-id=${{ github.event.comment.id }}
 
       - name: Update comment with error message
         if: steps.scd.outputs.error-message
