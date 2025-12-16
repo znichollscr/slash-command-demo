@@ -11,6 +11,12 @@ jobs:
     permissions:
       pull-requests: write
     steps:
+      - name: debug
+        with:
+          ACTOR: ${{ github.context.actor }}
+        run: |
+          echo "Hi"
+          echo $ACTOR
       - name: Dispatch
         uses: peter-evans/slash-command-dispatch@v5
         with:
