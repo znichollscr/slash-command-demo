@@ -9,7 +9,7 @@ jobs:
   command-dispatch:
     runs-on: ubuntu-latest
     permissions:
-      issues: write
+      pull_requests: write
     steps:
       - name: Dispatch
         uses: peter-evans/slash-command-dispatch@v5
