@@ -38,7 +38,7 @@ jobs:
       - name: Checkout branch
         env:
           GITHUB_TOKEN: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
-        run: hub pr checkout ${{ github.event.inputs.comment-pr-number }}
+        run: gh pr checkout ${{ github.event.inputs.comment-pr-number }}
 
       - name: Update time.txt
         run: |
