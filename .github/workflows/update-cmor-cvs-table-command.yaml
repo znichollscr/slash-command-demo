@@ -37,12 +37,11 @@ jobs:
       - name: Update time.txt
         run: |
           python -c 'import datetime; print(datetime.datetime.now())' > time.txt
+          git add time.txt
           git config --local user.email "ci-runner@gcages.invalid"
           git config --local user.name "$GITHUB_ACTOR"
-          git commit -m "Update time" -a
+          git commit -m "Update time"
           git push
-                    git config --global user.name "$GITHUB_ACTOR"
-          git config --global user.email "$CI_COMMIT_EMAIL"
 
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v5
