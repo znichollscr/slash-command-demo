@@ -19,6 +19,7 @@ jobs:
         uses: peter-evans/slash-command-dispatch@v5
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          reaction-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           issue-type: pull-request
           event-type-suffix: -command
           dispatch-type: workflow
