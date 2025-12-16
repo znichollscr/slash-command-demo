@@ -8,6 +8,8 @@ on:
 jobs:
   command-dispatch:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Dispatch
         uses: peter-evans/slash-command-dispatch@v5
