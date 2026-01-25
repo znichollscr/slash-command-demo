@@ -29,6 +29,8 @@ jobs:
             universe-cvs-branch="esgvoc"
             esgvoc-fork="junk"
             esgvoc-commit="4ee8e0f"
+            cmip7-cvs-fork=${{ github.event.pull_request.head.repo.owner.login }}
+            cmip7-cvs-branch=${{ github.head_ref || github.ref_name }}
 
       - name: Update comment with error message
         if: steps.scd.outputs.error-message

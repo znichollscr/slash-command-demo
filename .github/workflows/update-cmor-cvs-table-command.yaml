@@ -68,8 +68,8 @@ jobs:
           ESGVOC_REVISION: "${{ github.event.inputs.esgvoc-commit }}"
           UNIVERSE_CVS_FORK: "${{ github.event.inputs.universe-cvs-fork }}"
           UNIVERSE_CVS_BRANCH: "${{ github.event.inputs.universe-cvs-branch }}"
-          CMIP7_CVS_FORK: ${{ github.event.pull_request.head.repo.owner.login }}
-          CMIP7_CVS_BRANCH: ${{ github.head_ref || github.ref_name }}
+          CMIP7_CVS_FORK: ${{ github.event.inputs.cmip7-cvs-fork }}
+          CMIP7_CVS_BRANCH: ${{ github.event.inputs.cmip7-cvs-branch }}
         run: |
           if [[ $ESGVOC_FORK != "not-set" ]]; then
             sed -i -e 's/ESGVOC_FORK=".*"/ESGVOC_FORK='"${ESGVOC_FORK}"'/g' cmor-cvs-creation.env
