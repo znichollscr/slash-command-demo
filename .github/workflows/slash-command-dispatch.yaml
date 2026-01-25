@@ -9,12 +9,6 @@ jobs:
   command-dispatch:
     runs-on: ubuntu-latest
     steps:
-      - name: debug
-        env:
-          BRANCH: ${{ github.ref_name }}
-        run: |
-          echo "Hi"
-          echo $BRANCH
       - name: Dispatch
         uses: peter-evans/slash-command-dispatch@v5.0.1
         with:

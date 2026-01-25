@@ -16,6 +16,9 @@ on:
       comment-pr-number:
         description: 'The number of the pull request of the slash command'
         required: true
+      universe-cvs-fork:
+        description: 'The fork to use when retrieving the universe CVs'
+        required: true
 
 jobs:
   update-cmor-cvs-table:
