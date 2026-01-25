@@ -69,11 +69,11 @@ jobs:
         run: |
           if [[ $ESGVOC_FORK != "not-set" ]]; then
             sed -i -e 's/ESGVOC_FORK=".*"/ESGVOC_FORK='"${ESGVOC_FORK}"'/g' cmor-cvs-creation.env
-            sed -i -r -e 's#\(.*\)/github.com/.*/\(.*\)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' requirements-cmor-cvs-table.txt
+            gsed -i -E -e 's#\(.*\)/github.com/.*/\(.*\)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' requirements-cmor-cvs-table.txt
           fi
           if [[ $ESGVOC_REVISION != "not-set" ]]; then
             sed -i -e 's/ESGVOC_REVISION=".*"/ESGVOC_REVISION='"${ESGVOC_REVISION}"'/g' cmor-cvs-creation.env
-            sed -i -r -e 's#\(.*\)/esgf-vocab.git@.*#\1/esgf-vocab.git@'"${ESGVOC_REVISION}"'/\2#' requirements-cmor-cvs-table.txt
+            gsed -i -E -e 's#\(.*\)/esgf-vocab.git@.*#\1/esgf-vocab.git@'"${ESGVOC_REVISION}"'/\2#' requirements-cmor-cvs-table.txt
           fi
           if [[ $UNIVERSE_CVS_FORK != "not-set" ]]; then
             sed -i -e 's/UNIVERSE_CVS_FORK=".*"/UNIVERSE_CVS_FORK='"${UNIVERSE_CVS_FORK}"'/g' cmor-cvs-creation.env
