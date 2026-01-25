@@ -9,7 +9,7 @@ jobs:
   command-dispatch:
     runs-on: ubuntu-latest
     steps:
-      - uses: xt0rted/pull-request-comment-branch@v3
+      - uses: alessbell/pull-request-comment-branch@v2.1.0
         id: comment-branch
       - name: Debug
         run: |
@@ -33,10 +33,10 @@ jobs:
             comment-id=${{ github.event.comment.id }}
             comment-pr-number=${{ github.event.issue.number }}
             universe-cvs-fork="not-set"
-            universe-cvs-branch="esgvoc"
-            esgvoc-fork="junk"
-            esgvoc-commit="4ee8e0f"
-            cmip7-cvs-fork="znichollscr"
+            universe-cvs-branch="not-set"
+            esgvoc-fork="not-set"
+            esgvoc-commit="not-set"
+            cmip7-cvs-fork=${{ steps.comment-branch.outputs.head_owner }}
             cmip7-cvs-branch=${{ steps.comment-branch.outputs.head_ref }}
 
       - name: Update comment with error message
