@@ -40,15 +40,37 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
         run: gh pr checkout ${{ github.event.inputs.comment-pr-number }}
 
-      - name: Update time.txt
+      - name: debug
+        env:
+          BRANCH: ${{ github.ref_name }}
         run: |
-          python -c 'import datetime; print(datetime.datetime.now())' > time.txt
-          git add time.txt
-          git config --local user.email "ci-runner@gcages.invalid"
-          git config --local user.name "$GITHUB_ACTOR"
-          git commit -m "Update time"
-          git push
+          echo "DEBUG"
+          echo ${{ github.event.inputs.universe-cvs-fork }}
 
+      # - name: Set up environment
+      #   run: |
+      #     # TODO: put esgvoc version into requirements file if needed
+      #     pip install -r requirements-cmor-cvs-table.txt
+      #
+      #     esgvoc config remove-project -f cmip7 || true
+      #     # TODO: put these values into some other file so that is committed too
+      #     esgvoc config set "universe:github_repo=https://github.com/$UNIVERSE_CVS_FORK/WCRP-universe" "universe:branch=$UNIVERSE_CVS_BRANCH"
+      #     esgvoc config add-project cmip7 --custom --repo "https://github.com/$CMIP7_CVS_FORK/CMIP7-CVs" --branch "$CMIP7_CVS_BRANCH"
+      #     esgvoc config remove-project -f cmip6 || true
+      #     esgvoc config remove-project -f cmip6plus || true
+      #
+      #     esgvoc install
+      #
+      # - name: Update cmor-cvs.json
+      #   run: |
+      #     esgvoc cmor-export-cvs-table --out-path cmor-cvs.json
+      #
+      #     git add cmor-cvs.json
+      #     git config --local user.email "ci-runner@cmip7-cvs.invalid"
+      #     git config --local user.name "$GITHUB_ACTOR"
+      #     git commit -m "Update CMOR CVs file"
+      #     git push
+      #
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v5
         with:

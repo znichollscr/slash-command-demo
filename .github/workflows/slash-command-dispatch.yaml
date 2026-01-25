@@ -30,6 +30,7 @@ jobs:
             repository=${{ github.repository }}
             comment-id=${{ github.event.comment.id }}
             comment-pr-number=${{ github.event.issue.number }}
+            universe-cvs-fork="WCRP-CMIP"
 
       - name: Update comment with error message
         if: steps.scd.outputs.error-message
