@@ -72,20 +72,20 @@ jobs:
           CMIP7_CVS_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
           if [[ $ESGVOC_FORK != "not-set" ]]; then
-            sed -i -e 's/ESGVOC_FORK=".*"/ESGVOC_FORK="${ESGVOC_FORK}"/g' cmor-cvs-creation.env
+            sed -i -e 's/ESGVOC_FORK=".*"/ESGVOC_FORK='"${ESGVOC_FORK}"'/g' cmor-cvs-creation.env
           fi
           if [[ $ESGVOC_REVISION != "not-set" ]]; then
-            sed -i -e 's/ESGVOC_REVISION=".*"/ESGVOC_REVISION="${ESGVOC_REVISION}"/g' cmor-cvs-creation.env
+            sed -i -e 's/ESGVOC_REVISION=".*"/ESGVOC_REVISION='"${ESGVOC_REVISION}"'/g' cmor-cvs-creation.env
           fi
           if [[ $UNIVERSE_CVS_FORK != "not-set" ]]; then
-            sed -i -e 's/UNIVERSE_CVS_FORK=".*"/UNIVERSE_CVS_FORK="${UNIVERSE_CVS_FORK}"/g' cmor-cvs-creation.env
+            sed -i -e 's/UNIVERSE_CVS_FORK=".*"/UNIVERSE_CVS_FORK='"${UNIVERSE_CVS_FORK}"'/g' cmor-cvs-creation.env
           fi
           if [[ $UNIVERSE_CVS_BRANCH != "not-set" ]]; then
-            sed -i -e 's/UNIVERSE_CVS_BRANCH=".*"/UNIVERSE_CVS_BRANCH="${UNIVERSE_CVS_BRANCH}"/g' cmor-cvs-creation.env
+            sed -i -e 's/UNIVERSE_CVS_BRANCH=".*"/UNIVERSE_CVS_BRANCH='"${UNIVERSE_CVS_BRANCH}"'/g' cmor-cvs-creation.env
           fi
 
-          sed -i -e 's/CMIP7_CVS_FORK=".*"/CMIP7_CVS_FORK="${CMIP7_CVS_FORK}"/g' cmor-cvs-creation.env
-          sed -i -e 's/CMIP7_CVS_BRANCH=".*"/CMIP7_CVS_BRANCH="${CMIP7_CVS_BRANCH}"/g' cmor-cvs-creation.env
+          sed -i -e 's/CMIP7_CVS_FORK=".*"/CMIP7_CVS_FORK='"${CMIP7_CVS_FORK}"'/g' cmor-cvs-creation.env
+          sed -i -e 's/CMIP7_CVS_BRANCH=".*"/CMIP7_CVS_BRANCH='"${CMIP7_CVS_BRANCH}"'/g' cmor-cvs-creation.env
 
           cat cmor-cvs-creation.env
 
