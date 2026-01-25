@@ -67,7 +67,6 @@ jobs:
           CMIP7_CVS_FORK: ${{ github.event.inputs.cmip7-cvs-fork }}
           CMIP7_CVS_BRANCH: ${{ github.event.inputs.cmip7-cvs-branch }}
         run: |
-          man sed
           if [[ $ESGVOC_FORK != "not-set" ]]; then
             sed -i -e 's/ESGVOC_FORK=".*"/ESGVOC_FORK='"${ESGVOC_FORK}"'/g' cmor-cvs-creation.env
             sed -i -E -e 's#\(.*\)/github.com/.*/\(.*\)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' requirements-cmor-cvs-table.txt
