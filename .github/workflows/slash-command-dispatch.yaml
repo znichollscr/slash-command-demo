@@ -25,6 +25,9 @@ jobs:
             comment-id=${{ github.event.comment.id }}
             comment-pr-number=${{ github.event.issue.number }}
             universe-cvs-fork="WCRP-CMIP"
+            universe-cvs-branch="esgvoc"
+            esgvoc-fork="ESGF"
+            esgvoc-commit="no-update"
 
       - name: Update comment with error message
         if: steps.scd.outputs.error-message

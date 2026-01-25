@@ -19,6 +19,15 @@ on:
       universe-cvs-fork:
         description: 'The fork to use when retrieving the universe CVs'
         required: true
+      universe-cvs-branch:
+        description: 'The branch to use when retrieving the universe CVs'
+        required: true
+      esgvoc-fork:
+        description: 'The fork to use when installing esgvoc'
+        required: true
+      esgvoc-commit:
+        description: 'The commit (ID) to use when installing esgvoc'
+        required: true
 
 jobs:
   update-cmor-cvs-table:
@@ -43,12 +52,15 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
         run: gh pr checkout ${{ github.event.inputs.comment-pr-number }}
 
-      - name: debug
+      - name: Debug
         env:
           BRANCH: ${{ github.ref_name }}
         run: |
           echo "DEBUG"
           echo ${{ github.event.inputs.universe-cvs-fork }}
+          echo ${{ github.event.inputs.universe-cvs-branch }}
+          echo ${{ github.event.inputs.esgvoc-fork }}
+          echo ${{ github.event.inputs.esgvoc-commit }}
 
       # - name: Set up environment
       #   run: |
