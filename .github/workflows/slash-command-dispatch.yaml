@@ -27,7 +27,6 @@ jobs:
           commands: |
             update-cmor-cvs-table
             update-stac-json
-          # Note: esgvoc-commit 4ee8e0f is v2.1.0
           static-args: |
             repository=${{ github.repository }}
             comment-id=${{ github.event.comment.id }}
