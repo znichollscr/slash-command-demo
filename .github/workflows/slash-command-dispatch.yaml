@@ -9,10 +9,13 @@ jobs:
   command-dispatch:
     runs-on: ubuntu-latest
     steps:
+      - uses: xt0rted/pull-request-comment-branch@v3
+        id: comment-branch
       - name: Debug
         run: |
           echo "DEBUG"
           echo ${{ github.event.comment.head.repo.owner.login }}
+          echo ${{ steps.comment-branch.outputs.head_ref }}
       - name: Dispatch
         uses: peter-evans/slash-command-dispatch@v5.0.1
         with:
@@ -34,7 +37,7 @@ jobs:
             esgvoc-fork="junk"
             esgvoc-commit="4ee8e0f"
             cmip7-cvs-fork="znichollscr"
-            cmip7-cvs-branch=${{ github.head_ref || github.ref_name }}
+            cmip7-cvs-branch=${{ steps.comment-branch.outputs.head_ref }}
 
       - name: Update comment with error message
         if: steps.scd.outputs.error-message
