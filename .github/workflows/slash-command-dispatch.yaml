@@ -9,6 +9,10 @@ jobs:
   command-dispatch:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug
+        run: |
+          echo "DEBUG"
+          echo ${{ github.event.comment.head.repo.owner.login }}
       - name: Dispatch
         uses: peter-evans/slash-command-dispatch@v5.0.1
         with:
@@ -29,7 +33,7 @@ jobs:
             universe-cvs-branch="esgvoc"
             esgvoc-fork="junk"
             esgvoc-commit="4ee8e0f"
-            cmip7-cvs-fork=${{ github.event.pull_request.head.repo.owner.login }}
+            cmip7-cvs-fork=${{ github.event.comment.head.repo.owner.login }}
             cmip7-cvs-branch=${{ github.head_ref || github.ref_name }}
 
       - name: Update comment with error message
