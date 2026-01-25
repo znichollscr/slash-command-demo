@@ -52,11 +52,6 @@ esgvoc config remove-project -f cmip6
 esgvoc config remove-project -f cmip6plus
 esgvoc config remove-project -f cmip7
 
-# TODO: put these values into some other file so that they are committed too
-# UNIVERSE_CVS_FORK=mydb
-# UNIVERSE_CVS_BRANCH=abcd1234
-#
-# source cmor-cvs-creation.env
 esgvoc config set "universe:github_repo=https://github.com/$UNIVERSE_CVS_FORK/WCRP-universe" "universe:branch=$UNIVERSE_CVS_BRANCH"
 esgvoc config add-project cmip7 --custom --repo "https://github.com/$CMIP7_CVS_FORK/CMIP7-CVs" --branch "$CMIP7_CVS_BRANCH"
 
