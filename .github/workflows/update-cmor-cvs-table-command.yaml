@@ -62,20 +62,17 @@ jobs:
           echo ${{ github.event.inputs.esgvoc-fork }}
           echo ${{ github.event.inputs.esgvoc-commit }}
 
-      # - name: Set up environment
-      #   run: |
-      #     # TODO: put esgvoc version into requirements file if needed
-      #     pip install -r requirements-cmor-cvs-table.txt
-      #
-      #     esgvoc config remove-project -f cmip7 || true
-      #     # TODO: put these values into some other file so that is committed too
-      #     esgvoc config set "universe:github_repo=https://github.com/$UNIVERSE_CVS_FORK/WCRP-universe" "universe:branch=$UNIVERSE_CVS_BRANCH"
-      #     esgvoc config add-project cmip7 --custom --repo "https://github.com/$CMIP7_CVS_FORK/CMIP7-CVs" --branch "$CMIP7_CVS_BRANCH"
-      #     esgvoc config remove-project -f cmip6 || true
-      #     esgvoc config remove-project -f cmip6plus || true
-      #
-      #     esgvoc install
-      #
+      - name: Set up environment
+        env:
+          ESGVOC_FORK: "${{ github.event.inputs.esgvoc-fork }}"
+          ESGVOC_REVISION: "${{ github.event.inputs.esgvoc-fork }}"
+          UNIVERSE_CVS_FORK: "${{ github.event.inputs.universe-cvs-fork }}"
+          UNIVERSE_CVS_BRANCH: "${{ github.event.inputs.universe-cvs-branch }}"
+          CMIP7_CVS_FORK: ${{ github.event.pull_request.head.repo.owner.login }}
+          CMIP7_CVS_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          bash install-environment-for-cmor-cvs-creation.sh -v
+
       # - name: Update cmor-cvs.json
       #   run: |
       #     esgvoc cmor-export-cvs-table --out-path cmor-cvs.json
