@@ -73,7 +73,7 @@ jobs:
           fi
           if [[ $ESGVOC_REVISION != "not-set" ]]; then
             sed -i -e 's/ESGVOC_REVISION=.*/ESGVOC_REVISION='"${ESGVOC_REVISION}"'/g' cmor-cvs-creation.env
-            sed -i -E -e 's#\(.*\)/esgf-vocab.git@.*#\1/esgf-vocab.git@'"${ESGVOC_REVISION}"'/\2#' requirements-cmor-cvs-table.txt
+            sed -i -E -e 's#\(.*\)/esgf-vocab.git@.*#\1/esgf-vocab.git@'"${ESGVOC_REVISION}"'#' requirements-cmor-cvs-table.txt
           fi
           if [[ $UNIVERSE_CVS_FORK != "not-set" ]]; then
             sed -i -e 's/UNIVERSE_CVS_FORK=.*/UNIVERSE_CVS_FORK='"${UNIVERSE_CVS_FORK}"'/g' cmor-cvs-creation.env
