@@ -69,7 +69,7 @@ jobs:
         run: |
           if [[ $ESGVOC_FORK != "not-set" ]]; then
             sed -i -e 's/ESGVOC_FORK=".*"/ESGVOC_FORK='"${ESGVOC_FORK}"'/g' cmor-cvs-creation.env
-            sed -i -E -e 's#\(.*\)/github.com/.*/\(.*\)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' requirements-cmor-cvs-table.txt
+            sed -i -E -e 's#(.*)/github.com/.*/(.*)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' requirements-cmor-cvs-table.txt
           fi
           if [[ $ESGVOC_REVISION != "not-set" ]]; then
             sed -i -e 's/ESGVOC_REVISION=".*"/ESGVOC_REVISION='"${ESGVOC_REVISION}"'/g' cmor-cvs-creation.env
