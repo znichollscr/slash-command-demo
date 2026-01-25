@@ -20,6 +20,7 @@ jobs:
           commands: |
             update-cmor-cvs-table
             update-stac-json
+          # Note: esgvoc-commit 4ee8e0f is v2.1.0
           static-args: |
             repository=${{ github.repository }}
             comment-id=${{ github.event.comment.id }}
@@ -27,7 +28,7 @@ jobs:
             universe-cvs-fork="WCRP-CMIP"
             universe-cvs-branch="esgvoc"
             esgvoc-fork="ESGF"
-            esgvoc-commit="no-update"
+            esgvoc-commit="4ee8e0f"
 
       - name: Update comment with error message
         if: steps.scd.outputs.error-message
