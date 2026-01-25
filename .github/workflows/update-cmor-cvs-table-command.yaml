@@ -62,7 +62,7 @@ jobs:
           echo ${{ github.event.inputs.esgvoc-fork }}
           echo ${{ github.event.inputs.esgvoc-commit }}
 
-      - name: Set up environment
+      - name: Update environment file
         env:
           ESGVOC_FORK: "${{ github.event.inputs.esgvoc-fork }}"
           ESGVOC_REVISION: "${{ github.event.inputs.esgvoc-commit }}"
@@ -71,18 +71,39 @@ jobs:
           CMIP7_CVS_FORK: ${{ github.event.pull_request.head.repo.owner.login }}
           CMIP7_CVS_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
-          bash install-environment-for-cmor-cvs-creation.sh -v
+          if [[ $ESGVOC_FORK != "not-set" ]]; then
+            sed -i -e 's/ESGVOC_FORK=".*"/ESGVOC_FORK="${ESGVOC_FORK}"/g' cmor-cvs-creation.env
+          fi
+          if [[ $ESGVOC_REVISION != "not-set" ]]; then
+            sed -i -e 's/ESGVOC_REVISION=".*"/ESGVOC_REVISION="${ESGVOC_REVISION}"/g' cmor-cvs-creation.env
+          fi
+          if [[ $UNIVERSE_CVS_FORK != "not-set" ]]; then
+            sed -i -e 's/UNIVERSE_CVS_FORK=".*"/UNIVERSE_CVS_FORK="${UNIVERSE_CVS_FORK}"/g' cmor-cvs-creation.env
+          fi
+          if [[ $UNIVERSE_CVS_BRANCH != "not-set" ]]; then
+            sed -i -e 's/UNIVERSE_CVS_BRANCH=".*"/UNIVERSE_CVS_BRANCH="${UNIVERSE_CVS_BRANCH}"/g' cmor-cvs-creation.env
+          fi
 
-      - name: Update cmor-cvs.json
-        run: |
-          esgvoc cmor-export-cvs-table --out-path cmor-cvs.json
+          sed -i -e 's/CMIP7_CVS_FORK=".*"/CMIP7_CVS_FORK="${CMIP7_CVS_FORK}"/g' cmor-cvs-creation.env
+          sed -i -e 's/CMIP7_CVS_BRANCH=".*"/CMIP7_CVS_BRANCH="${CMIP7_CVS_BRANCH}"/g' cmor-cvs-creation.env
 
-          git add cmor-cvs.json requirements-cmor-cvs-table.txt
-          # git add cmor-cvs-creation.env
-          git config --local user.email "ci-runner@cmip7-cvs.invalid"
-          git config --local user.name "$GITHUB_ACTOR"
-          git commit -m "Update CMOR CVs file"
-          git push
+          cat cmor-cvs-creation.env
+
+      # - name: Set up environment
+      #   run: |
+      #     source cmor-cvs-creation.env
+      #     bash install-environment-for-cmor-cvs-creation.sh -v
+      #
+      # - name: Update cmor-cvs.json
+      #   run: |
+      #     esgvoc cmor-export-cvs-table --out-path cmor-cvs.json
+      #
+      #     git add cmor-cvs.json requirements-cmor-cvs-table.txt
+      #     # git add cmor-cvs-creation.env
+      #     git config --local user.email "ci-runner@cmip7-cvs.invalid"
+      #     git config --local user.name "$GITHUB_ACTOR"
+      #     git commit -m "Update CMOR CVs file"
+      #     git push
 
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v5

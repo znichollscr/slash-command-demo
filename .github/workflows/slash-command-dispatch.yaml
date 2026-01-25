@@ -25,9 +25,9 @@ jobs:
             repository=${{ github.repository }}
             comment-id=${{ github.event.comment.id }}
             comment-pr-number=${{ github.event.issue.number }}
-            universe-cvs-fork="WCRP-CMIP"
+            universe-cvs-fork="not-set"
             universe-cvs-branch="esgvoc"
-            esgvoc-fork="ESGF"
+            esgvoc-fork="junk"
             esgvoc-commit="4ee8e0f"
 
       - name: Update comment with error message
