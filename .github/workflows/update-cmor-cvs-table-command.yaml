@@ -68,22 +68,22 @@ jobs:
           CMIP7_CVS_BRANCH: ${{ github.event.inputs.cmip7-cvs-branch }}
         run: |
           if [[ $ESGVOC_FORK != "not-set" ]]; then
-            sed -i -e 's/ESGVOC_FORK=".*"/ESGVOC_FORK='"${ESGVOC_FORK}"'/g' cmor-cvs-creation.env
-            sed -i -E -e 's#(.*)/github.com/.*/(.*)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' requirements-cmor-cvs-table.txt
+            sed -i -e 's/ESGVOC_FORK=.*/ESGVOC_FORK='"${ESGVOC_FORK}"'/g' cmor-cvs-creation.env
+            sed -i -E -e 's#\(.*\)/github.com/.*/\(.*\)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' requirements-cmor-cvs-table.txt
           fi
           if [[ $ESGVOC_REVISION != "not-set" ]]; then
-            sed -i -e 's/ESGVOC_REVISION=".*"/ESGVOC_REVISION='"${ESGVOC_REVISION}"'/g' cmor-cvs-creation.env
-            sed -i -E -e 's#(.*)/esgf-vocab.git@.*#\1/esgf-vocab.git@'"${ESGVOC_REVISION}"'#' requirements-cmor-cvs-table.txt
+            sed -i -e 's/ESGVOC_REVISION=.*/ESGVOC_REVISION='"${ESGVOC_REVISION}"'/g' cmor-cvs-creation.env
+            sed -i -E -e 's#\(.*\)/esgf-vocab.git@.*#\1/esgf-vocab.git@'"${ESGVOC_REVISION}"'/\2#' requirements-cmor-cvs-table.txt
           fi
           if [[ $UNIVERSE_CVS_FORK != "not-set" ]]; then
-            sed -i -e 's/UNIVERSE_CVS_FORK=".*"/UNIVERSE_CVS_FORK='"${UNIVERSE_CVS_FORK}"'/g' cmor-cvs-creation.env
+            sed -i -e 's/UNIVERSE_CVS_FORK=.*/UNIVERSE_CVS_FORK='"${UNIVERSE_CVS_FORK}"'/g' cmor-cvs-creation.env
           fi
           if [[ $UNIVERSE_CVS_BRANCH != "not-set" ]]; then
-            sed -i -e 's/UNIVERSE_CVS_BRANCH=".*"/UNIVERSE_CVS_BRANCH='"${UNIVERSE_CVS_BRANCH}"'/g' cmor-cvs-creation.env
+            sed -i -e 's/UNIVERSE_CVS_BRANCH=.*/UNIVERSE_CVS_BRANCH='"${UNIVERSE_CVS_BRANCH}"'/g' cmor-cvs-creation.env
           fi
 
-          sed -i -e 's/CMIP7_CVS_FORK=".*"/CMIP7_CVS_FORK='"${CMIP7_CVS_FORK}"'/g' cmor-cvs-creation.env
-          sed -i -e 's/CMIP7_CVS_BRANCH=".*"/CMIP7_CVS_BRANCH='"${CMIP7_CVS_BRANCH}"'/g' cmor-cvs-creation.env
+          sed -i -e 's/CMIP7_CVS_FORK=.*/CMIP7_CVS_FORK='"${CMIP7_CVS_FORK}"'/g' cmor-cvs-creation.env
+          sed -i -e 's/CMIP7_CVS_BRANCH=.*/CMIP7_CVS_BRANCH='"${CMIP7_CVS_BRANCH}"'/g' cmor-cvs-creation.env
 
           cat cmor-cvs-creation.env
           cat requirements-cmor-cvs-table.txt | grep esgf-vocab
