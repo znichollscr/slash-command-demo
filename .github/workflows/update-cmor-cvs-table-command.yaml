@@ -28,6 +28,12 @@ on:
       esgvoc-commit:
         description: 'The commit (ID) to use when installing esgvoc'
         required: true
+      cmip7-cvs-fork:
+        description: 'The fork to use when retrieving the CMIP7 CVs'
+        required: true
+      cmip7-cvs-branch:
+        description: 'The branch to use when retrieving the CMIP7 CVs'
+        required: true
 
 jobs:
   update-cmor-cvs-table:
