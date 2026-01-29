@@ -1,6 +1,0 @@
-{
-    "@context": "000_context.jsonld",
-    "id": "landice",
-    "type": "realm",
-    "description": "Dataset of primary interest in studying land ice."
-}

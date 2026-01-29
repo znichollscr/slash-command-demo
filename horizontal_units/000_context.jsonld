@@ -1,8 +1,0 @@
-{
-  "@context": {
-    "id": "@id",
-    "type": "@type",
-    "@base": "https://esgvoc.ipsl.fr/resource/universe/horizontal_units/",
-    "horizontal_units": "https://esgvoc.ipsl.fr/resource/universe/horizontal_units"
-  }
-}

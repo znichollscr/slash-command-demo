@@ -1,5 +1,0 @@
-{
-  "@context": "000_context.jsonld",
-  "id": "v100",
-  "type": "vertical_computational_grid"
-}

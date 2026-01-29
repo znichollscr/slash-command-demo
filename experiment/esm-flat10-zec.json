@@ -1,7 +1,0 @@
-{
-    "@context": "000_context.jsonld",
-    "id": "esm-flat10-zec",
-    "type": "experiment",
-    "parent_mip_era": "cmip7",
-    "tier": 1
-}

@@ -1,8 +1,0 @@
-{
-    "@context": {
-        "id": "@id",
-        "type": "@type",
-        "@base": "https://esgvoc.ipsl.fr/resource/universe/data_specs_version/",
-        "data_specs_version": "https://esgvoc.ipsl.fr/resource/universe/data_specs_version"
-    }
-}
