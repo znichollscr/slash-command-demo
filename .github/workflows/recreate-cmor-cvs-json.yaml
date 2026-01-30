@@ -45,10 +45,10 @@ jobs:
           git commit -m "Update CMOR CVs JSON via GitHub action"
 
       # If triggered from branch other than main, push directly to the branch
-      # - name: Push to branch
-      #   if: steps.verify-changed-files.outputs.files_changed == 'true'
-      #   run: |
-      #     git push
+      - name: Push to branch
+        if: ${{ steps.verify-changed-files.outputs.files_changed == 'true' && github.ref_name != 'main' }}
+        run: |
+          git push
 
       # If triggered from main, create a new PR
       - name: Create new pull request
