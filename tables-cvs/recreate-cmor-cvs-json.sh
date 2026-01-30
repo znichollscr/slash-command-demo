@@ -8,6 +8,7 @@
 # Options:
 #
 # -o: file in which to write the output (deafult: cmor-cvs.json)
+# -r: file from which to read the requirements (default: requirements-cmor-cvs-table.txt)
 # -e: install dependencies before creating the file
 # -v: verbose mode
 #
@@ -34,10 +35,12 @@ CMIP7_CVS_BRANCH="${CMIP7_CVS_BRANCH:=add-ukmo-entries}"
 verbose=0
 install_env=0
 out_file='cmor-cvs.json'
+requirements_file='requirements-cmor-cvs-table.txt'
 
-while getopts "o:ve" OPTION; do
+while getopts "o:r:ve" OPTION; do
     case $OPTION in
     o) out_file="${OPTARG}" ;;
+    r) requirements_file="${OPTARG}" ;;
     v) verbose=1 ;;
     e) install_env=1 ;;
     *)
@@ -63,14 +66,15 @@ if [[ $install_env -eq 1 ]]; then
     log "CMIP7_CVS_BRANCH=$CMIP7_CVS_BRANCH"
 
     log "out_file=$out_file"
+    log "requirements_file=$requirements_file"
 
-    sed -i -E -e 's#(.*)/github.com/.*/(.*)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' requirements-cmor-cvs-table.txt
-    sed -i -E -e 's#(.*)/esgf-vocab.git@.*#\1/esgf-vocab.git@'"${ESGVOC_REVISION}"'#' requirements-cmor-cvs-table.txt
+    sed -i -E -e 's#(.*)/github.com/.*/(.*)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' "${requirements_file}"
+    sed -i -E -e 's#(.*)/esgf-vocab.git@.*#\1/esgf-vocab.git@'"${ESGVOC_REVISION}"'#' "${requirements_file}"
     # # Mac equivalent of the above
-    # sed -i -E -e 's#\(.*\)/github.com/.*/\(.*\)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' requirements-cmor-cvs-table.txt
-    # sed -i -E -e 's#\(.*\)/esgf-vocab.git@.*#\1/esgf-vocab.git@'"${ESGVOC_REVISION}"'#' requirements-cmor-cvs-table.txt
+    # sed -i -E -e 's#\(.*\)/github.com/.*/\(.*\)#\1/github.com/'"${ESGVOC_FORK}"'/\2#' "${requirements_file}"
+    # sed -i -E -e 's#\(.*\)/esgf-vocab.git@.*#\1/esgf-vocab.git@'"${ESGVOC_REVISION}"'#' "${requirements_file}"
 
-    pip install -r requirements-cmor-cvs-table.txt
+    pip install -r "${requirements_file}"
 
     esgvoc config create cmip7-cvs-ci
     esgvoc config switch cmip7-cvs-ci
